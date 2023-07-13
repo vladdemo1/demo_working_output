@@ -1,0 +1,8 @@
+db.sqlite3
+.idea
+media
+.env
+__pycache__
+pgdata
+backup
+*.save
