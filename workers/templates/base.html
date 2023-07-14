@@ -6,15 +6,15 @@
 
 {% block description %}
     <meta name="description"
-          content="Сантехника купить в Харькове недорого. Интернет магазин Marmara. Популярные товары по низким ценам."/>
+          content="Workers"/>
 {% endblock description %}
 
-    <meta name="author" content="Alexander Demchenko"/>
+    <meta name="author" content="VLad Demchenko"/>
     <meta name="subject" content="Сантехника Харьков">
     <meta name="robots" content="index, follow"/>
 
 {% block keywords %}
-    <meta name="keywords" content="Сантехника Харьков, Купить сантехнику в Харькове, Сантехника купить Украина"/>
+    <meta name="keywords" content="Workers"/>
 {% endblock keywords %}
 
     <meta name="copyright" content="vladdemo">
@@ -112,6 +112,13 @@
                     </li>
                 </ul>
 
+
+                <div style="text-align: center;">
+                    <a class="btn btn-outline-dark btn-block" href="#">
+                        Вхід
+                    </a>
+                </div>
+
             </div>
         </div>
     </nav>
@@ -207,8 +214,6 @@
                                     </div>
                                 </div>
 
-                                {{ worker.boss }}
-
                                 <!-- Worker actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center"><a class="btn btn-outline-success mt-auto"
@@ -231,6 +236,38 @@
 
         <!-- Footer-->
     {% endblock content %}
+
+
+    {% block pagination %}
+
+    {% if workers.has_previous %}
+
+
+    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+        <div class="text-center"><a class="btn btn-outline-success mt-auto"
+                                    href="{% url 'workers-by-page' workers.previous_page_number %}">
+            Попередня сторінка
+        </a>
+        </div>
+    </div>
+
+    {% endif%}
+
+    {% if workers.has_next %}
+
+
+    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+        <div class="text-center"><a class="btn btn-outline-success mt-auto"
+                                    href="{% url 'workers-by-page' workers.next_page_number %}">
+            Наступна сторінка
+        </a>
+        </div>
+    </div>
+
+    {% endif%}
+
+{% endblock %}
+
 
 </div>
 
