@@ -8,4 +8,5 @@ from .views import BaseView
 
 urlpatterns = [
     path('', BaseView.as_view(), name='base'),
+    path("workers/<int:page>/", BaseView.as_view(), name="workers-by-page"),
 ]
