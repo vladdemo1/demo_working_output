@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 
-from django.views.generic import View
+from django.views.generic import View, DetailView
 
 from .models import Worker
 from .controller import Search, Positions
@@ -53,3 +53,23 @@ class PositionView(View):
             'positions': positions,
         }
         return render(request, 'base.html', context)
+
+
+class WorkerDetailView(DetailView):
+    """
+    This view for detain present current worker
+    """
+    def get(self, request, *args, **kwargs):
+        """
+        Selected product add to cart
+        """
+        position, first_name, last_name = kwargs.get('position'), kwargs.get('first_name'), kwargs.get('last_name')
+        
+        worker = Search.get_worker_info(position=position, first_name=first_name, last_name=last_name)
+        positions = Positions.get_positions_dict()
+
+        context = {
+            'worker': worker,
+            'positions': positions,
+        }
+        return render(request, 'worker_detail.html', context)

@@ -34,8 +34,18 @@ class Search:
         """
         workers_by_position = Worker.objects.filter(position=position)
 
-        return choice(workers_by_position) 
+        return choice(workers_by_position)
+    
 
+    @staticmethod
+    def get_worker_info(position: str, first_name: str, last_name: str) -> Worker:
+        """
+        Get current worker with detail info by position, first name and last name
+        """
+        workers = Worker.objects.filter(position=position, first_name=first_name, last_name=last_name)
+        if workers:
+            return workers[0]
+        return None
 
 
 class Positions:

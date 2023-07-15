@@ -3,6 +3,16 @@ This mod contains main model for this project
 """
 
 from django.db import models
+from django.urls import reverse
+
+
+def get_worker_url(obj, viewname):
+    """
+    get worker url by position and name
+    """
+    # ct_model = obj.__class__._meta.model_name
+    # 'ct_model': ct_model, 
+    return reverse(viewname, kwargs={'position': obj.position, 'first_name': obj.first_name, 'last_name': obj.last_name})
 
 
 class Worker(models.Model):
@@ -49,6 +59,12 @@ class Worker(models.Model):
         """
         return f"{self.first_name} [{self.position}]"
 
+    def get_absolute_url(self):
+        """
+        get url by position and name
+        """
+        return get_worker_url(self, 'worker-detail')
+    
 
     class Meta:
         verbose_name_plural = 'Працівник'
