@@ -73,3 +73,35 @@ class WorkerDetailView(DetailView):
             'positions': positions,
         }
         return render(request, 'worker_detail.html', context)
+
+
+class SearchView(View):
+    """
+    This class about search
+    """
+
+    def post(self, request, *args, **kwargs):
+        """
+        search py pattern
+        """
+
+        form_data = request.POST.dict()
+
+        page = kwargs.get('page') if kwargs.get('page') else 1
+
+        pattern = str(form_data.get('pattern'))
+        pattern_for_search = pattern.lower()
+
+        workers = Search.get_workers_by_keyword(keyword=pattern_for_search)
+
+        # paginator = Paginator(workers, per_page=4)
+        # workers_object = paginator.get_page(page)
+
+        positions = Positions.get_positions_dict()
+
+        context = {
+            'workers': workers,
+            'pattern': pattern,
+            'positions': positions,
+        }
+        return render(request, 'search.html', context)
