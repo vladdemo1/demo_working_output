@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>{{ worker.first_name }} {{ worker.last_name }} </title>{% endblock title %}
+
+{% block description %}
+    <meta name="description"
+          content="{{ worker.first_name }} - {{ worker.position }}"/>
+{% endblock description %}
+
+{% block keywords %}
+    <meta name="keywords" content="{{ worker.first_name }} {{ worker.last_name }} {{ worker.position }}"/>
+{% endblock keywords %}
+
+{% block og_title %}
+    <meta property="og:title" content="{{ worker.first_name }} {{ worker.last_name }}"/>
+{% endblock og_title %}
+
+{% block og_description %}
+    <meta name="og:description"
+          content="{{ worker.first_name }} - {{ worker.position }}">
+{% endblock og_description %}
+
+{% block content %}
+{% load static %}
+
+
+<div class="container justify-content-center breadup cont-main-block">
+    <ul class="pagination shadow-lg">
+        <li class="page-item "><a class="page-link a_bread" href="/"><i class="fa fa-th-large  mr-1  ml-0"></i><small> Додому </small></a></li>
+        <li class="page-item active "><a class="page-link a_bread" href="{{worker.get_absolute_url}}"><i  class="fa fa-eye mr-1"></i><small> {{ worker.first_name }} {{ worker.last_name }}</small></a></li>
+    </ul>
+</div>
+
+
+    <div class="row detail_main container justify-content-center proddiv" style="margin-left:auto ;margin-right:auto">
+        <div class="col-md-4">
+            <img src="{% static "images/worker.jpg" %}" class="img-fluid customDetailImage" alt="{{ worker.first_name }}">
+        </div>
+        <div class="col-md-8 custom-div-detail">
+            <h3 class="custom-font">{{ worker.first_name }} {{ worker.middle_name }} {{ worker.last_name }}</h3>
+            <p class="custom-font-p">Посада: {{ worker.position }}.</p>
+            <p class="custom-font-p">Дата прийому: {{ worker.date_of_receipt }}</p>
+            <p class="custom-font-p">Email: {{ worker.email }}</p>
+            {% if worker.boss %}
+            <p class="custom-font-p">Начальник: {{ worker.boss }} {{ worker.boss.last_name }}</p>
+            {% else %}
+            <p class="custom-font-p">Без начальника.</p>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock content %}
