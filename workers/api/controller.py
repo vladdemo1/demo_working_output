@@ -46,6 +46,35 @@ class Search:
         if workers:
             return workers[0]
         return None
+    
+    @staticmethod
+    def get_workers_by_keyword(keyword):
+        """
+        Get all workers by keyword via search
+        """
+        return [worker for worker in Worker.objects.all() if Search.check_keywords(worker, keyword)]
+
+    @staticmethod
+    def check_keywords(worker: Worker, keyword: str) -> bool:
+        """
+        Check keywords current product
+        """
+        if keyword in worker.first_name.lower():
+            return True
+        
+        if keyword in worker.middle_name.lower():
+            return True
+        
+        if keyword in worker.last_name.lower():
+            return True
+        
+        if keyword in worker.position.lower():
+            return True
+        
+        if keyword in worker.email.lower():
+            return True
+        
+        return False
 
 
 class Positions:

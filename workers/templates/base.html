@@ -101,7 +101,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <form method="post" action="#">
+                        <form method="post" action="{% url 'search' 1 %}">
                             {% csrf_token %}
                             <div class="input-group div-search-gr">
                                 <input id="pattern" name="pattern" type="text" class="form-control input-search-custom"
@@ -169,7 +169,7 @@
                     <!-- Worker actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center"><a class="btn btn-outline-success mt-auto"
-                                                    href="#">
+                                                    href="{{ boss.get_absolute_url }}">
                             Додаткова інформація
                         </a>
                         </div>
@@ -216,7 +216,7 @@
                                 <!-- Worker actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center"><a class="btn btn-outline-success mt-auto"
-                                                                href="#">
+                                                                href="{{ worker.get_absolute_url }}">
                                         Додаткова інформація
                                     </a>
                                     </div>
