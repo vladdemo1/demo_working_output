@@ -9,7 +9,7 @@
           content="Workers"/>
 {% endblock description %}
 
-    <meta name="author" content="VLad Demchenko"/>
+    <meta name="author" content="Vlad Demchenko"/>
     <meta name="subject" content="Сантехника Харьков">
     <meta name="robots" content="index, follow"/>
 
@@ -93,10 +93,10 @@
                         <a class="nav-link dropdown-toggle" id="navbarDropdownCategory" href="#" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">Посади</a>
                         <ul class="dropdown-menu drop-down-style" aria-labelledby="navbarDropdown">
-                            {% comment %} {% for category in categories %}
+                            {% for key, value in positions.items %}
                                 <li><a class="dropdown-item text-center"
-                                       href="{{ category.url }}">{{ category.name }}</a></li>
-                            {% endfor %} {% endcomment %}
+                                       href="{% url 'workers-by-position' key 1 %}">{{ value }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
 
@@ -154,7 +154,7 @@
                     {% endif %}
 
                     <!-- Worker image-->
-                    <a href="{{ product.get_absolute_url }}"><img class="card-img-top"
+                    <a href="{{ boss.get_absolute_url }}"><img class="card-img-top"
                                                                   src="{% static "images/worker.jpg" %}"
                                                                   alt="{{ boss.first_name }}"/></a>
                     <!-- Worker details-->
@@ -162,7 +162,7 @@
                         <div class="text-center">
                             <h5 class="fw-bolder">
                                 <a class="tag-a-custom"
-                                   href="{{ product.get_absolute_url }}">{{ boss.first_name }} {{ boss.last_name }}</a>
+                                   href="{{ boss.get_absolute_url }}">{{ boss.first_name }} {{ boss.last_name }}</a>
                             </h5>
                         </div>
                     </div>
@@ -201,15 +201,14 @@
                                 {% endif %}
 
                                 <!-- Worker image-->
-                                <a href="{{ product.get_absolute_url }}"><img class="card-img-top"
-                                                                              src="{% static "images/worker.jpg" %}"
-                                                                              alt="{{ worker.first_name }}"/></a>
+                                <a href="{{ worker.get_absolute_url }}"><img class="card-img-top" src="{% static "images/worker.jpg" %}"
+                                   alt="{{ worker.first_name }}"/></a>
                                 <!-- Worker details-->
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <h5 class="fw-bolder">
                                             <a class="tag-a-custom"
-                                               href="{{ product.get_absolute_url }}">{{ worker.first_name }} {{ worker.last_name }}</a>
+                                               href="{{ worker.get_absolute_url }}">{{ worker.first_name }} {{ worker.last_name }}</a>
                                         </h5>
                                     </div>
                                 </div>
@@ -266,7 +265,7 @@
 
     {% endif%}
 
-{% endblock %}
+{% endblock pagination %}
 
 
 </div>

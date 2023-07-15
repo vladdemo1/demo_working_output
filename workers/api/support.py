@@ -12,12 +12,12 @@ POSITIONS = {
     "Security Guard": 100,
 }
 
-POSITIONS_TUPLE = (
-    "Chief Director",
-    "Deputy Director",
-    "Head of department",
-    "Deputy Head",
-    "Laboratory assistant",
-    "Pharmacist",
-    "Security Guard",
-)
+POSITIONS_SHORT = {
+    "chief": "Chief Director",
+    "pre_chief": "Deputy Director",
+    "head": "Head of department",
+    "pre_head": "Deputy Head",
+    "laborant": "Laboratory assistant",
+    "pharmacist": "Pharmacist",
+    "security": "Security Guard",
+}
